@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "481595863893",
+    "project_id": "fb-leve-saude",
+    "storage_bucket": "fb-leve-saude.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481595863893:android:5effb6c347f6b197a1b5dc",
+        "android_client_info": {
+          "package_name": "com.eduardomatos.testmobilelevesaude"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8vAU3b68Vr006zl7crtPLMMG3rDd7Zbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
