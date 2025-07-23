@@ -1,4 +1,6 @@
+import { Link } from "expo-router";
 import React, { useState } from "react";
+
 import {
   Image,
   KeyboardAvoidingView,
@@ -49,14 +51,11 @@ function LoginScreen() {
             />
             <Text style={style.instuctions}>
               Não possui uma conta?{" "}
-              <Text
-                style={style.spanRegister}
-                onPress={() => alert("Register")}
-              >
+              <Link href="/Register" style={style.spanRegister}>
                 Cadastre-se
-              </Text>
+              </Link>
             </Text>
-            <Button handleLogin={handleLogin} />
+            <Button handleLogin={handleLogin} text="Entrar" />
           </View>
         </View>
       </KeyboardAvoidingView>
