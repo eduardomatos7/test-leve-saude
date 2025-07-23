@@ -2,10 +2,16 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Colors } from "../constants/Colors";
 
-function Button({ handleLogin }: { handleLogin: () => void }) {
+function Button({
+  handleLogin,
+  text,
+}: {
+  handleLogin: () => void;
+  text: string;
+}) {
   return (
     <TouchableOpacity style={style.button} onPress={handleLogin}>
-      <Text style={style.buttonText}>Entrar</Text>
+      <Text style={style.buttonText}>{text}</Text>
     </TouchableOpacity>
   );
 }
