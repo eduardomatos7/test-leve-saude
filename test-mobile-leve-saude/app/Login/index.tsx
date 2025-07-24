@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
-import React, { useState } from "react";
-
+import React from "react";
+import { Controller } from "react-hook-form";
 import {
   Image,
   KeyboardAvoidingView,
@@ -10,16 +10,19 @@ import {
 } from "react-native";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import { useLoginForm } from "../../hooks/useLoginForm";
 import style from "./styles";
 
 const logo = require("../../assets/images/logo_leve_saude.png");
 
 function LoginScreen() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = () => {
-    alert("Login");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useLoginForm();
+  const onSubtmit = (data: { email: string; password: string }) => {
+    console.log("Login Data:", data);
   };
 
   return (
@@ -36,26 +39,46 @@ function LoginScreen() {
             <Text style={style.title}>Faça login para prosseguir!</Text>
           </View>
           <View style={style.loginContainer}>
-            <Input
-              placeholder="E-mail"
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
+            <Controller
+              name="email"
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                  placeholder="E-mail"
+                  value={value}
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  keyboardType="email-address"
+                />
+              )}
             />
-            <Input
-              placeholder="Senha"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry={true}
-              placeholderTextColor="#999"
+            {errors.email && (
+              <Text style={style.errorText}>{errors.email.message}</Text>
+            )}
+            <Controller
+              name="password"
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                  placeholder="Senha"
+                  value={value}
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  secureTextEntry={true}
+                  placeholderTextColor="#999"
+                />
+              )}
             />
+            {errors.password && (
+              <Text style={style.errorText}>{errors.password.message}</Text>
+            )}
             <Text style={style.instuctions}>
               Não possui uma conta?{" "}
               <Link href="/Register" style={style.spanRegister}>
                 Cadastre-se
               </Link>
             </Text>
-            <Button handleLogin={handleLogin} text="Entrar" />
+            <Button handleSubmit={handleSubmit(onSubtmit)} text="Entrar" />
           </View>
         </View>
       </KeyboardAvoidingView>
