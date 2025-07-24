@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import {
   Image,
@@ -11,18 +11,21 @@ import {
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { useRegisterForm } from "../../hooks/useRegisterForm";
+import { authRegister } from "../../services/auth";
+import { registerFormDataType } from "../../types/forms/onSubmitData";
 import style from "./styles";
 
 const logo = require("../../assets/images/logo_leve_saude.png");
 
 function LoginScreen() {
+  const [loading, setLoading] = useState(false);
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useRegisterForm();
-  const onSubtmit = (data: { email: string; password: string }) => {
-    console.log("Login Data:", data);
+  const onSubtmit = (data: registerFormDataType) => {
+    authRegister(data, setLoading);
   };
 
   return (
@@ -87,14 +90,17 @@ function LoginScreen() {
             {errors.password && (
               <Text style={style.errorText}>{errors.password?.message}</Text>
             )}
-
             <Text style={style.instuctions}>
               Já possui uma conta?{" "}
               <Link href="/Login" style={style.spanRegister}>
                 Faça Login
               </Link>
             </Text>
-            <Button handleSubmit={handleSubmit(onSubtmit)} text="Cadastrar" />
+            <Button
+              loading={loading}
+              handleSubmit={handleSubmit(onSubtmit)}
+              text="Cadastrar"
+            />
           </View>
         </View>
       </KeyboardAvoidingView>
