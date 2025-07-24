@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   KeyboardAvoidingView,
@@ -10,18 +10,22 @@ import {
 import Button from "../../components/Button";
 import { FormField } from "../../components/Form";
 import { useLoginForm } from "../../hooks/useLoginForm";
+import { authLogin } from "../../services/auth";
+import { LoginFormatDataType } from "../../types/forms/onSubmitData";
 import style from "./styles";
 
 const logo = require("../../assets/images/logo_leve_saude.png");
 
 function LoginScreen() {
+  const [loading, setLoading] = useState(false);
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useLoginForm();
-  const onSubtmit = (data: { email: string; password: string }) => {
-    console.log("Login Data:", data);
+  const onSubtmit = (data: LoginFormatDataType) => {
+    authLogin(data, setLoading);
   };
 
   return (
@@ -62,7 +66,11 @@ function LoginScreen() {
                 Cadastre-se
               </Link>
             </Text>
-            <Button handleSubmit={handleSubmit(onSubtmit)} text="Entrar" />
+            <Button
+              handleSubmit={handleSubmit(onSubtmit)}
+              loading={loading}
+              text="Entrar"
+            />
           </View>
         </View>
       </KeyboardAvoidingView>
