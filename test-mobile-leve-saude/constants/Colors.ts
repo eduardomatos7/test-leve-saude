@@ -1,6 +1,7 @@
 export const Colors = {
   primary: "#ff3400",
   secondary: "#451e44",
+  white: "#fff",
   label: "#878787",
   text: "#404040",
   error: "#ff0000",
