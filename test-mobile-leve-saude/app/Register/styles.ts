@@ -40,6 +40,14 @@ const style = StyleSheet.create({
     fontWeight: "bold",
     textDecorationLine: "underline",
   },
+  errorText: {
+    color: Colors.error,
+    fontSize: 12,
+    marginTop: -10,
+    marginBottom: 10,
+    textAlign: "left",
+    width: "100%",
+  },
   instuctions: { marginVertical: 16, color: Colors.label, fontSize: 14 },
 });
 export default style;

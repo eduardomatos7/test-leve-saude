@@ -3,6 +3,7 @@ export const Colors = {
   secondary: "#451e44",
   label: "#878787",
   text: "#404040",
+  error: "#ff0000",
   background: "#f4f4f4",
   boxShadow: "1px 2px 6px rgba(0, 0, 0, 0.25)",
   shadow: {

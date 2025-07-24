@@ -41,5 +41,13 @@ const style = StyleSheet.create({
     textDecorationLine: "underline",
   },
   instuctions: { marginVertical: 16, color: Colors.label, fontSize: 14 },
+  errorText: {
+    color: Colors.error,
+    fontSize: 12,
+    marginTop: -10,
+    marginBottom: 10,
+    textAlign: "left",
+    width: "100%",
+  },
 });
 export default style;
