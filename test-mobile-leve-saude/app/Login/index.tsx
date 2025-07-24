@@ -1,6 +1,5 @@
 import { Link } from "expo-router";
 import React from "react";
-import { Controller } from "react-hook-form";
 import {
   Image,
   KeyboardAvoidingView,
@@ -9,7 +8,7 @@ import {
   View,
 } from "react-native";
 import Button from "../../components/Button";
-import Input from "../../components/Input";
+import { FormField } from "../../components/Form";
 import { useLoginForm } from "../../hooks/useLoginForm";
 import style from "./styles";
 
@@ -39,39 +38,24 @@ function LoginScreen() {
             <Text style={style.title}>Faça login para prosseguir!</Text>
           </View>
           <View style={style.loginContainer}>
-            <Controller
+            <FormField
               name="email"
               control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  placeholder="E-mail"
-                  value={value}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  keyboardType="email-address"
-                />
-              )}
+              placeholder="E-mail"
+              error={errors.email && { message: errors.email.message }}
             />
-            {errors.email && (
-              <Text style={style.errorText}>{errors.email.message}</Text>
-            )}
-            <Controller
+
+            <FormField
               name="password"
               control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  placeholder="Senha"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  secureTextEntry={true}
-                  placeholderTextColor="#999"
-                />
-              )}
+              placeholder="Senha"
+              secureTextEntry
+              error={
+                errors.password
+                  ? { message: errors.password.message }
+                  : undefined
+              }
             />
-            {errors.password && (
-              <Text style={style.errorText}>{errors.password.message}</Text>
-            )}
             <Text style={style.instuctions}>
               Não possui uma conta?{" "}
               <Link href="/Register" style={style.spanRegister}>
