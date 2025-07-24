@@ -1,6 +1,5 @@
 import { Link } from "expo-router";
 import React, { useState } from "react";
-import { Controller } from "react-hook-form";
 import {
   Image,
   KeyboardAvoidingView,
@@ -9,7 +8,7 @@ import {
   View,
 } from "react-native";
 import Button from "../../components/Button";
-import Input from "../../components/Input";
+import { FormField } from "../../components/Form";
 import { useRegisterForm } from "../../hooks/useRegisterForm";
 import { authRegister } from "../../services/auth";
 import { registerFormDataType } from "../../types/forms/onSubmitData";
@@ -42,54 +41,32 @@ function LoginScreen() {
             <Text style={style.title}>Cadastre-se para prosseguir!</Text>
           </View>
           <View style={style.loginContainer}>
-            <Controller
+            <FormField
               name="name"
               control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  placeholder="Nome"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                />
-              )}
+              placeholder="Nome"
+              error={errors.name ? { message: errors.name.message } : undefined}
             />
-            {errors.name && (
-              <Text style={style.errorText}>{errors.name.message}</Text>
-            )}
-            <Controller
+            <FormField
               name="email"
               control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  placeholder="E-mail"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  keyboardType="email-address"
-                />
-              )}
+              placeholder="E-mail"
+              keyboardType="email-address"
+              error={
+                errors.email ? { message: errors.email.message } : undefined
+              }
             />
-            {errors.email && (
-              <Text style={style.errorText}>{errors.email?.message}</Text>
-            )}
-            <Controller
+            <FormField
               name="password"
               control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  placeholder="Senha"
-                  value={value}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  secureTextEntry={true}
-                  placeholderTextColor="#999"
-                />
-              )}
+              placeholder="Senha"
+              secureTextEntry
+              error={
+                errors.password
+                  ? { message: errors.password.message }
+                  : undefined
+              }
             />
-            {errors.password && (
-              <Text style={style.errorText}>{errors.password?.message}</Text>
-            )}
             <Text style={style.instuctions}>
               Já possui uma conta?{" "}
               <Link href="/Login" style={style.spanRegister}>
