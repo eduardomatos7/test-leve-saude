@@ -3,14 +3,14 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Colors } from "../constants/Colors";
 
 function Button({
-  handleLogin,
+  handleSubmit,
   text,
 }: {
-  handleLogin: () => void;
+  handleSubmit: () => void;
   text: string;
 }) {
   return (
-    <TouchableOpacity style={style.button} onPress={handleLogin}>
+    <TouchableOpacity style={style.button} onPress={handleSubmit}>
       <Text style={style.buttonText}>{text}</Text>
     </TouchableOpacity>
   );
