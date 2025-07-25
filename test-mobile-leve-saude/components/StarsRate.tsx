@@ -14,7 +14,7 @@ export default function StarRate({
         <Ionicons
           key={i}
           name={i < stars ? "star" : "star-outline"}
-          size={STAR_SIZE ? STAR_SIZE : 22}
+          size={STAR_SIZE ? STAR_SIZE : 20}
           color={i < stars ? "#FFB800" : "#D3D3D3"}
           style={{ marginRight: 2 }}
         />
