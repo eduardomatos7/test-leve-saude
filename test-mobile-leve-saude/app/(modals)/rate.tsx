@@ -1,23 +1,48 @@
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { z } from "zod";
+import Button from "../../components/Home/Button";
+import { ratingSchema } from "../../schemas/ratingSchema";
+import { addRating } from "../../services/firebaseAddRating";
 import styles from "../../styles/rate.styles";
-
 const STAR_COUNT = 5;
 const STAR_SIZE = 43;
 
 export default function RateScreen() {
-  const [rating, setRating] = useState(0);
+  const [stars, setStars] = useState(0);
   const [comment, setComment] = useState("");
 
   const handleStarPress = (index: number) => {
-    setRating(index);
+    setStars(index);
   };
 
   const handleSend = () => {
-    alert("Avaliação enviada!");
-    setRating(0);
-    setComment("");
+    try {
+      ratingSchema.parse({ stars, comment });
+      addRating(stars, comment)
+        .then((addSucess) => {
+          if (addSucess) {
+            setStars(0);
+            setComment("");
+            alert("Avaliação enviada!");
+          }
+        })
+        .catch(() => {
+          alert("Erro ao enviar avaliação:");
+        });
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        const messages = err.issues.map((issue) => issue.message);
+        if (messages.length > 1) {
+          alert("Insira todos os campos");
+        } else {
+          alert(messages);
+        }
+      } else {
+        alert("Ocorreu um erro inesperado");
+      }
+    }
   };
 
   return (
@@ -29,10 +54,10 @@ export default function RateScreen() {
       <View style={styles.starsContainer}>
         {[...Array(STAR_COUNT)].map((_, i) => (
           <TouchableOpacity key={i} onPress={() => handleStarPress(i + 1)}>
-            <Ionicons
-              name={i < rating ? "star" : "star-outline"}
+            <AntDesign
+              name={i < stars ? "star" : "staro"}
               size={STAR_SIZE}
-              color={i < rating ? "#FFB800" : "#D3D3D3"}
+              color={i < stars ? "#FFB800" : "#D3D3D3"}
               style={{ marginHorizontal: 4 }}
             />
           </TouchableOpacity>
@@ -50,9 +75,7 @@ export default function RateScreen() {
         value={comment}
         onChangeText={setComment}
       />
-      <TouchableOpacity style={styles.button} onPress={handleSend}>
-        <Text style={styles.buttonText}>Enviar</Text>
-      </TouchableOpacity>
+      <Button strokColor text="Enviar" width={100} onChange={handleSend} />
     </View>
   );
 }
