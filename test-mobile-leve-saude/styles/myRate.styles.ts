@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "../constants/Colors";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.white,
     padding: 18,
   },
   header: {
@@ -14,28 +15,34 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 18,
+    marginVertical: 18,
   },
   card: {
     marginBottom: 8,
   },
   date: {
     fontSize: 12,
-    color: "#888",
+    color: Colors.textGrayDate,
     marginBottom: 2,
   },
   comment: {
-    fontSize: 13,
-    color: "#333",
+    fontSize: 15,
+    color: Colors.text,
     marginBottom: 8,
-    marginTop: 2,
+    marginTop: 5,
   },
   divider: {
     height: 1,
-    backgroundColor: "#E5E5E5",
+    backgroundColor: Colors.divider,
     marginVertical: 8,
+  },
+  noRatingsText: {
+    fontSize: 16,
+    color: Colors.textGrayDate,
+    textAlign: "center",
+    marginTop: 20,
   },
 });
 export default styles;

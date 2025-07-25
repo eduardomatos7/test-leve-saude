@@ -49,5 +49,22 @@ const style = StyleSheet.create({
     textAlign: "left",
     width: "100%",
   },
+  buttonBackground: {
+    height: 46,
+    width: 46,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Colors.logout,
+    marginTop: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
 });
 export default style;
