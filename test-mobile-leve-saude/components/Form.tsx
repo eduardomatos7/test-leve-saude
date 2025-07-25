@@ -1,7 +1,7 @@
 import { Controller } from "react-hook-form";
 import { StyleSheet, Text } from "react-native";
 import { Colors } from "../constants/Colors";
-import FormFieldProps from "../types/forms/formFieldProps";
+import FormFieldProps from "../interfaces/formFieldProps";
 import Input from "./Input";
 
 export function FormField({

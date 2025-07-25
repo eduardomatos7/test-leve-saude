@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { AnimatedIcon } from "../../components/animatedTabBar";
+import { AnimatedIcon } from "../../components/AnimatedTabBar";
 import { Colors } from "../../constants/Colors";
 
 export default function Layout() {
