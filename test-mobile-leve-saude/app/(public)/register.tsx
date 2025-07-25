@@ -10,13 +10,13 @@ import {
 import Button from "../../components/Button";
 import { FormField } from "../../components/Form";
 import { useRegisterForm } from "../../hooks/useRegisterForm";
+import { registerFormDataType } from "../../interfaces/onSubmitData";
 import { authRegister } from "../../services/auth";
 import style from "../../styles/authStyles/styles";
-import { registerFormDataType } from "../../types/forms/onSubmitData";
 
 const logo = require("../../assets/images/logo_leve_saude.png");
 
-function LoginScreen() {
+function RegisterScreen() {
   const [loading, setLoading] = useState(false);
   const {
     control,
@@ -85,4 +85,4 @@ function LoginScreen() {
   );
 }
 
-export default LoginScreen;
+export default RegisterScreen;

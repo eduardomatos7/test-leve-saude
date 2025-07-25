@@ -10,9 +10,9 @@ import {
 import Button from "../../components/Button";
 import { FormField } from "../../components/Form";
 import { useLoginForm } from "../../hooks/useLoginForm";
+import { LoginFormatDataType } from "../../interfaces/onSubmitData";
 import { authLogin } from "../../services/auth";
 import style from "../../styles/authStyles/styles";
-import { LoginFormatDataType } from "../../types/forms/onSubmitData";
 
 const logo = require("../../assets/images/logo_leve_saude.png");
 
