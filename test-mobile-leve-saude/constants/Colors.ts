@@ -1,10 +1,17 @@
 export const Colors = {
-  primary: "#ff3400",
+  primary: "#ff552bff",
   secondary: "#451e44",
   white: "#fff",
+  textArea: "#ebedf2",
+  starSelected: "#ffcb45",
+  starUnselected: "#d9d9d9",
+  divider: "#e5e5e5",
   label: "#878787",
   text: "#404040",
+  textGrayLight: "#858585",
+  textGrayDate: "#888",
   error: "#ff0000",
+  logout: "#F44336",
   background: "#f4f4f4",
   boxShadow: "1px 2px 6px rgba(0, 0, 0, 0.25)",
   shadow: {
