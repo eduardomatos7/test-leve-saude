@@ -4,7 +4,6 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "@react-native-firebase/auth";
-import { router } from "expo-router";
 
 export async function authRegister(
   { email, password, name }: { email: string; password: string; name: string },
@@ -17,12 +16,11 @@ export async function authRegister(
       email,
       password,
     );
+    alert("Usuário cadastrado com sucesso!");
     const user = userCredential.user;
     await updateProfile(user, {
       displayName: name,
     });
-    alert("Usuário cadastrado com sucesso!");
-    router.push("/Home");
     setLoading(false);
     return userCredential;
   } catch (error) {
@@ -50,7 +48,6 @@ export async function authLogin(
       email,
       password,
     );
-    router.push("/Home");
     setLoading(false);
     return userCredential;
   } catch (error) {

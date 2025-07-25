@@ -11,8 +11,8 @@ import Button from "../../components/Button";
 import { FormField } from "../../components/Form";
 import { useLoginForm } from "../../hooks/useLoginForm";
 import { authLogin } from "../../services/auth";
+import style from "../../styles/authStyles/styles";
 import { LoginFormatDataType } from "../../types/forms/onSubmitData";
-import style from "./styles";
 
 const logo = require("../../assets/images/logo_leve_saude.png");
 
@@ -62,7 +62,7 @@ function LoginScreen() {
             />
             <Text style={style.instuctions}>
               Não possui uma conta?{" "}
-              <Link href="/Register" style={style.spanRegister}>
+              <Link replace href="/register" style={style.spanRegister}>
                 Cadastre-se
               </Link>
             </Text>

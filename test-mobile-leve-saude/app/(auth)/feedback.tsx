@@ -1,18 +1,16 @@
 import { getAuth, signOut } from "@react-native-firebase/auth";
-import { router } from "expo-router";
 import React from "react";
 import { Text, View } from "react-native";
 import Button from "../../components/Button";
 
-function Home() {
+function Feedback() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Home Screen</Text>
+      <Text>Feedback authenticated</Text>
       <Button
         handleSubmit={async () => {
           try {
             await signOut(getAuth());
-            router.push("/Login");
             alert("Você saiu!");
           } catch (error) {
             alert("Erro ao sair da conta!");
@@ -25,4 +23,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Feedback;
