@@ -4,6 +4,8 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "@react-native-firebase/auth";
+import { doc, setDoc } from "@react-native-firebase/firestore";
+import { db } from "./firebase";
 
 export async function authRegister(
   { email, password, name }: { email: string; password: string; name: string },
@@ -16,11 +18,21 @@ export async function authRegister(
       email,
       password,
     );
+
     alert("Usuário cadastrado com sucesso!");
+
     const user = userCredential.user;
     await updateProfile(user, {
       displayName: name,
     });
+
+    await setDoc(doc(db, "Users", userCredential.user.uid), {
+      name,
+      email,
+      createdAt: new Date(),
+      role: "user",
+    });
+
     setLoading(false);
     return userCredential;
   } catch (error) {
