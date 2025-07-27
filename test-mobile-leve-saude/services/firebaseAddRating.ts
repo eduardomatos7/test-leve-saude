@@ -1,18 +1,10 @@
-import { getApp } from "@react-native-firebase/app";
-import { getAuth } from "@react-native-firebase/auth";
-import {
-  addDoc,
-  collection,
-  getFirestore,
-} from "@react-native-firebase/firestore";
+import { addDoc, collection } from "@react-native-firebase/firestore";
+import { auth, db } from "./firebase";
 
 export async function addRating(
   stars: number,
   comment: string,
 ): Promise<boolean> {
-  const app = getApp();
-  const auth = getAuth(app);
-  const db = getFirestore(app);
   const user = auth.currentUser;
 
   try {
