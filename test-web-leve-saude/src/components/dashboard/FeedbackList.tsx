@@ -1,5 +1,5 @@
 import type { FeedbackListProps } from "../../interface/feedback";
-import SkeletonPage from "../skeleton/SkeletonFeedbackList";
+import SkeletonLoader from "../skeleton/SkeletonLoader";
 import EmptyFeedbackMessage from "./EmptyFeedbackMessage";
 import SearchBar from "./SearchBar";
 import SortOptions from "./SortOptions";
@@ -15,7 +15,15 @@ export default function FeedbackList({
   onSortChange,
 }: FeedbackListProps) {
   if (loading) {
-    return <SkeletonPage />;
+    return (
+      <SkeletonLoader
+        searchTerm={searchTerm}
+        onSearchChange={onSearchChange}
+        sortField={sortField}
+        sortDirection={sortDirection}
+        onSortChange={onSortChange}
+      />
+    );
   }
 
   // Nao da pra fazer a pesquisa e retornar os
@@ -35,6 +43,9 @@ export default function FeedbackList({
   if (!filteredFeedbacks.length) {
     return (
       <div className="space-y-4">
+        <h2 className="text-primary text-lg font-bold">
+          Total: <span className="font-medium">0</span>
+        </h2>
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <SearchBar searchTerm={searchTerm} onSearchChange={onSearchChange} />
           <SortOptions
@@ -50,6 +61,9 @@ export default function FeedbackList({
 
   return (
     <div className="space-y-4">
+      <h2 className="text-primary text-lg font-bold">
+        Total: <span className="font-medium">{filteredFeedbacks.length}</span>
+      </h2>
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <SearchBar searchTerm={searchTerm} onSearchChange={onSearchChange} />
         <SortOptions

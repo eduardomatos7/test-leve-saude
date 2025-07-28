@@ -8,9 +8,7 @@ function Header() {
           className="mr-2 h-10 md:h-12"
         />
       </div>
-      <span className="text-secondary text-base font-bold tracking-wider md:text-lg">
-        DASHBOARD
-      </span>
+      <span className="text-secondary text-base font-bold tracking-wider md:text-lg">Admin</span>
     </header>
   );
 }
