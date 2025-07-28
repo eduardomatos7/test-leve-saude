@@ -1,11 +1,7 @@
-import Login from "./pages/Login/loginScreen";
+import RouterLayout from "./routes/routes";
 
 function App() {
-  return (
-    <>
-      <Login />
-    </>
-  );
+  return <RouterLayout />;
 }
 
 export default App;
