@@ -2,7 +2,6 @@ import { getAuth, onAuthStateChanged, type User } from "firebase/auth";
 import type React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import SkeletonFeedback from "./skeleton/SkeletonFeedbackList";
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null | undefined>(undefined);
@@ -16,7 +15,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   }, []);
 
   if (user === undefined) {
-    return <SkeletonFeedback />;
+    return null;
   }
 
   if (!user) {

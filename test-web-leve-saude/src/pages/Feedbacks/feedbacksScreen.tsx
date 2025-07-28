@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../components/dashboard/DashboardLayout";
 import FeedbackList from "../../components/dashboard/FeedbackList";
+import type { SortDirection, SortField } from "../../components/dashboard/SortOptions";
 import type { Feedback } from "../../interface/feedback";
 import { fetchAllFeedbacks } from "../../services/feedbackService";
-import type { SortDirection, SortField } from "../../components/dashboard/SortOptions";
 
 function FeedbacksScreen() {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
@@ -40,9 +40,9 @@ function FeedbacksScreen() {
   return (
     <DashboardLayout>
       <div className="p-4 md:p-6">
-        <h1 className="mb-6 text-2xl font-bold text-gray-800">Todos os Feedbacks</h1>
-        <FeedbackList 
-          feedbacks={feedbacks} 
+        <h1 className="mb-2 text-2xl font-bold text-gray-800">Todos os Feedbacks</h1>
+        <FeedbackList
+          feedbacks={feedbacks}
           loading={loading}
           searchTerm={searchTerm}
           onSearchChange={handleSearchChange}
