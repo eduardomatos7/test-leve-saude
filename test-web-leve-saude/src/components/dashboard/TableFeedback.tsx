@@ -1,8 +1,22 @@
+import { useState } from "react";
 import type { Feedback } from "../../interface/feedback";
 import { formatDate } from "../../utils/formatDate";
 import StarsRating from "../starsRating";
+import FeedbackModal from "./FeedbackModal";
 
 function TableFeedback({ filteredFeedbacks }: { filteredFeedbacks: Feedback[] }) {
+  const [selectedFeedback, setSelectedFeedback] = useState<Feedback | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleRowClick = (feedback: Feedback) => {
+    setSelectedFeedback(feedback);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow">
       <div className="overflow-x-auto">
@@ -39,7 +53,8 @@ function TableFeedback({ filteredFeedbacks }: { filteredFeedbacks: Feedback[] })
             {filteredFeedbacks.map(feedback => (
               <tr
                 key={feedback.key}
-                className="ease transition-colors duration-200 hover:bg-gray-200"
+                className="ease cursor-pointer transition-colors duration-200 hover:bg-gray-200"
+                onClick={() => handleRowClick(feedback)}
               >
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900">{feedback.name}</div>
@@ -58,6 +73,7 @@ function TableFeedback({ filteredFeedbacks }: { filteredFeedbacks: Feedback[] })
           </tbody>
         </table>
       </div>
+      <FeedbackModal feedback={selectedFeedback} isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 }
