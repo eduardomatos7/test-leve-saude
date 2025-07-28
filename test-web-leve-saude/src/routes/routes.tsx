@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import NotFound from "../components/notFound";
 import { ProtectedRoute } from "../components/protectedRoute";
+import FeedbacksScreen from "../pages/Feedbacks/feedbacksScreen";
 import HomeScreen from "../pages/Home/homeScreen";
 import Login from "../pages/Login/loginScreen";
 
@@ -14,6 +15,14 @@ export default function RouterLayout() {
           element={
             <ProtectedRoute>
               <HomeScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/feedbacks"
+          element={
+            <ProtectedRoute>
+              <FeedbacksScreen />
             </ProtectedRoute>
           }
         />
