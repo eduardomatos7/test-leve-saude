@@ -31,6 +31,7 @@ export default function InputField({
           type={type}
           placeholder={placeholder}
           required
+          autoComplete="on"
           className="w-full rounded-lg border-none bg-white py-2 pr-3 pl-10 text-sm shadow-sm focus:outline-none md:text-base"
           {...rest}
         />

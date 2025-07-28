@@ -18,6 +18,7 @@ export default function SearchBar({
         <MdSearch className="h-5 w-5 text-gray-400" />
       </div>
       <input
+        id="search"
         type="text"
         value={searchTerm}
         onChange={e => onSearchChange(e.target.value)}
