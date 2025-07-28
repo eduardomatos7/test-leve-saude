@@ -1,10 +1,23 @@
-export default function ButtonSubmit() {
+import { CgSpinner } from "react-icons/cg";
+
+interface ButtonSubmitProps {
+  isLoading?: boolean;
+}
+export default function ButtonSubmit({ isLoading = false }: ButtonSubmitProps) {
   return (
     <button
       type="submit"
-      className="bg-secondary mt-2 w-full cursor-pointer rounded-lg border-none py-2 text-sm font-semibold text-white transition-colors hover:bg-[#3a1b38] md:text-base"
+      disabled={isLoading}
+      className="bg-secondary mt-2 w-full cursor-pointer rounded-lg border-none py-2 text-sm font-semibold text-white transition-colors hover:bg-[#3a1b38] disabled:opacity-70 md:text-base"
     >
-      Entrar
+      {isLoading ? (
+        <div className="flex items-center justify-center">
+          <CgSpinner size={23} className="mr-3 animate-spin" />
+          Entrando...
+        </div>
+      ) : (
+        "Entrar"
+      )}
     </button>
   );
 }
