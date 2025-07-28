@@ -1,76 +1,64 @@
 import type { FeedbackListProps } from "../../interface/feedback";
-import { formatDate } from "../../utils/formatDate";
 import SkeletonPage from "../skeleton/SkeletonFeedbackList";
-import StarsRating from "../starsRating";
+import EmptyFeedbackMessage from "./EmptyFeedbackMessage";
+import SearchBar from "./SearchBar";
+import SortOptions from "./SortOptions";
+import TableFeedback from "./TableFeedback";
 
-export default function FeedbackList({ feedbacks, loading }: FeedbackListProps) {
+export default function FeedbackList({
+  feedbacks,
+  loading,
+  searchTerm,
+  onSearchChange,
+  sortField,
+  sortDirection,
+  onSortChange,
+}: FeedbackListProps) {
   if (loading) {
     return <SkeletonPage />;
   }
 
-  if (!feedbacks.length) {
+  // Nao da pra fazer a pesquisa e retornar os
+  // feedbacks filtrados diretamente do firebase porque nao tem como usar includes, como no sql puro
+  // a alternativa seria usar uma plataforma de busca como Algolia ou ElasticSearch
+  // ou fazer a pesquisa no frontend, filtrando os feedbacks já carregados
+  const filteredFeedbacks = feedbacks.filter(feedback => {
+    const searchTermLower = searchTerm.toLowerCase().trim();
+    if (!searchTermLower) return true;
+
     return (
-      <div className="rounded-lg bg-white p-6 text-center shadow">
-        <p className="text-gray-500">Nenhum feedback encontrado.</p>
+      feedback.name.toLowerCase().includes(searchTermLower) ||
+      feedback.comment.toLowerCase().includes(searchTermLower)
+    );
+  });
+
+  if (!filteredFeedbacks.length) {
+    return (
+      <div className="space-y-4">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <SearchBar searchTerm={searchTerm} onSearchChange={onSearchChange} />
+          <SortOptions
+            sortField={sortField}
+            sortDirection={sortDirection}
+            onSortChange={onSortChange}
+          />
+        </div>
+        <EmptyFeedbackMessage searchTerm={searchTerm} />
       </div>
     );
   }
 
   return (
-    <div className="overflow-hidden rounded-lg bg-white shadow">
-      <div className="overflow-x-auto">
-        <table className="divide-divider min-w-full divide-y">
-          <thead className="bg-gray-200">
-            <tr>
-              <th
-                scope="col"
-                className="text-text px-6 py-3 text-left text-xs font-medium tracking-wider uppercase"
-              >
-                Usuário
-              </th>
-              <th
-                scope="col"
-                className="text-text px-6 py-3 text-left text-xs font-medium tracking-wider uppercase"
-              >
-                Avaliação
-              </th>
-              <th
-                scope="col"
-                className="text-text px-6 py-3 text-left text-xs font-medium tracking-wider uppercase"
-              >
-                Comentário
-              </th>
-              <th
-                scope="col"
-                className="text-text px-6 py-3 text-left text-xs font-medium tracking-wider uppercase"
-              >
-                Data
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-divider divide-y bg-white">
-            {feedbacks.map(feedback => (
-              <tr
-                key={feedback.key}
-                className="ease transition-colors duration-200 hover:bg-gray-200"
-              >
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">{feedback.name}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">{StarsRating(feedback.stars)}</td>
-                <td className="px-6 py-4">
-                  <div className="max-w-xs truncate text-sm text-gray-500 md:max-w-md">
-                    {feedback.comment}
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-sm whitespace-nowrap text-gray-500">
-                  {formatDate(feedback.createdAt)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="space-y-4">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <SearchBar searchTerm={searchTerm} onSearchChange={onSearchChange} />
+        <SortOptions
+          sortField={sortField}
+          sortDirection={sortDirection}
+          onSortChange={onSortChange}
+        />
       </div>
+      <TableFeedback filteredFeedbacks={filteredFeedbacks} />
     </div>
   );
 }
