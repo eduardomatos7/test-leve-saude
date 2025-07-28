@@ -1,6 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { MdLockOutline, MdOutlineEmail } from "react-icons/md";
+import { useNavigate } from "react-router";
 import { loginSchema } from "../../schemas/login.schema";
 import { authLoginAdm } from "../../services/auth";
 import type { loginSchemaType } from "../../types/login.types";
@@ -9,6 +11,8 @@ import InputField from "./inputField";
 import Title from "./title";
 
 function LoginForm() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -21,8 +25,16 @@ function LoginForm() {
     },
   });
 
+  const navigate = useNavigate();
+
   const onSubmit: SubmitHandler<loginSchemaType> = (data: loginSchemaType) => {
-    authLoginAdm(data.email, data.password);
+    setIsLoading(true);
+
+    authLoginAdm(data.email, data.password, navigate);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
   };
 
   return (
@@ -48,7 +60,7 @@ function LoginForm() {
           type="password"
           error={errors.password}
         />
-        <ButtonSubmit />
+        <ButtonSubmit isLoading={isLoading} />
       </form>
     </div>
   );
