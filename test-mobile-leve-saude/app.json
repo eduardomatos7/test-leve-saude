@@ -45,12 +45,6 @@
     ],
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "0041f456-f8a5-4782-8aff-f68ca44a234c"
-      }
-    },
-    "owner": "eduardo-matos"
+    }
   }
 }
