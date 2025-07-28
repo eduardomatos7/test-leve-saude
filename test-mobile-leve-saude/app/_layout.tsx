@@ -5,7 +5,7 @@ import {
 } from "@react-native-firebase/auth";
 import { Stack, useRouter, useSegments } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, StatusBar, View } from "react-native";
 
 export default function RootLayout() {
   const [initializing, setInitializing] = useState(true);
@@ -47,15 +47,19 @@ export default function RootLayout() {
       <View
         style={{ flex: 1, alignContent: "center", justifyContent: "center" }}
       >
+        <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
         <ActivityIndicator size="large" />
       </View>
     );
 
   return (
-    <Stack>
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(public)" options={{ headerShown: false }} />
-      <Stack.Screen name="(modals)" options={{ headerShown: false }} />
-    </Stack>
+    <>
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+      <Stack>
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(public)" options={{ headerShown: false }} />
+        <Stack.Screen name="(modals)" options={{ headerShown: false }} />
+      </Stack>
+    </>
   );
 }

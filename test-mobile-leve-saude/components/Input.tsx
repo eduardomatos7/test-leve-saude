@@ -19,6 +19,7 @@ const style = StyleSheet.create({
     paddingHorizontal: 12,
     marginBottom: 16,
     backgroundColor: "#fff",
+    color: Colors.text,
   },
 });
 export default Input;
