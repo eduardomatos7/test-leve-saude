@@ -2,8 +2,8 @@
 
 Este projeto contém duas aplicações:
 
-- **Web**: React + Vite
 - **Mobile**: React Native (Expo + EAS Build)
+- **Web**: React + Vite
 
 ## Pré-requisitos
 
@@ -15,43 +15,13 @@ Este projeto contém duas aplicações:
 
 ---
 
-## Rodando o projeto Web
-
-1. **Acesse a pasta do projeto web:**
-
-   ```sh
-   cd test-web-leve-saude
-   ```
-
-2. **Instale as dependências:**
-
-   ```sh
-   npm install
-   # ou
-   yarn
-   ```
-
-3. **Configure as variáveis de ambiente:**
-
-   - Coloque o arquivo `.env` (enviado por email) na raiz do projeto.
-
-4. **Inicie o servidor de desenvolvimento:**
-   ```sh
-   npm run dev
-   # ou
-   yarn dev
-   ```
-   - Acesse [http://localhost:5173](http://localhost:5173) no navegador.
-
----
-
 ## Build do App Mobile com EAS Build
 
 ### Pré-requisitos
 
 - Conta Expo (criar em https://expo.dev)
-- Node.js instalado (v16+)
-- Projeto Expo inicializado
+- Node.js instalado (v18+)
+- Projeto Expo inicializado (ou inicialize na hroa)
 
 ### Passo a passo para desenvolvimento
 
@@ -80,17 +50,8 @@ Este projeto contém duas aplicações:
    ```sh
    eas login
    ```
-
-5. **Verifique se o perfil de desenvolvimento está configurado:**
-
-   Abra o arquivo `eas.json` na raiz do projeto e confirme que existe um perfil chamado "development" com a configuração:
-
-   ```json
-   "development": {
-     "developmentClient": true,
-     "distribution": "internal"
-   }
-   ```
+5. **depois rode**: 
+``eas init``
 
 6. **Construa a versão de desenvolvimento do aplicativo:**
 
@@ -100,23 +61,28 @@ Este projeto contém duas aplicações:
 
    Este processo levará alguns minutos. O EAS fará o build na nuvem e fornecerá um link para download quando estiver concluído.
 
-7. **Instale o aplicativo gerado no seu dispositivo:**
+7. **Instale o aplicativo gerado (acesse a conta expo e procure o projeto vinculado, depois instale) no seu dispositivo:**
 
    - Após o build ser concluído, você receberá um link para download
    - Baixe o arquivo APK no seu dispositivo Android
    - Ative "Instalar de fontes desconhecidas" nas configurações do seu dispositivo
    - Instale o aplicativo baixado
-
-8 **Abra o aplicativo instalado no dispositivo** e escaneie o QR code exibido no terminal.
+  
+8. **NO terminal, rode o comando abaixo para iniciar o modo desenvolvimento:**
+    ```sh
+   npm start
+   ```
+9. **Abra o aplicativo instalado no dispositivo** e escaneie o QR code exibido no terminal.
 
 ### Dicas para solução de problemas
 
 - Se ocorrer o erro "Command 'eas' not found", reinstale o EAS CLI usando `npm install -g eas-cli`
 - Verifique se sua conta Expo tem permissões para realizar builds
+- Se ocorrer erros ao gerar a Keystore, tente logar no expo novamente (com eas login)
 
 ### Comandos alternativos
 
-- **Para gerar uma preview do aplicativo:**
+- **Para gerar uma preview do aplicativo (usar sem precisar do computador, apenas baixar e instalar):**
 
   ```sh
   eas build --platform android --profile preview
@@ -142,25 +108,37 @@ Este projeto contém duas aplicações:
 
 ---
 
-## Scripts úteis
 
-- **Web**
+## Rodando o projeto Web
 
-  - `npm run dev` — inicia o servidor de desenvolvimento
-  - `npm run build` — gera build de produção
-  - `npm run lint` — verifica padrões de código
+### Observação: se não quiser instalar localmente, apenas acesse o link e faça o login com o email e senha de admin (também enviado por email para maior segurança) 
 
-- **Mobile**
-  - `expo start` — inicia o projeto em modo desenvolvimento
-  - `expo run:android` — compila e instala no emulador/dispositivo Android
+Link: https://test-web-leve-saude-eta.vercel.app/
+
+1. **Acesse a pasta do projeto web:**
+
+   ```sh
+   cd test-web-leve-saude
+   ```
+
+2. **Instale as dependências:**
+
+   ```sh
+   npm install
+   # ou
+   yarn
+   ```
+
+3. **Configure as variáveis de ambiente:**
+
+   - Coloque o arquivo `.env` (enviado por email) na raiz do projeto.
+
+4. **Inicie o servidor de desenvolvimento:**
+   ```sh
+   npm run dev
+   # ou
+   yarn dev
+   ```
+   - Acesse [http://localhost:5173](http://localhost:5173) no navegador.
 
 ---
-
-## Estrutura de Pastas
-
-```
-test-leve-saude/
-├── test-web-leve-saude/      # Projeto Web
-├── test-mobile-leve-saude/   # Projeto Mobile
-└── README.md                 # Este guia
-```
