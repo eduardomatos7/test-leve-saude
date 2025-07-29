@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import ErrorBoundary from "../components/errorBoundary";
 import NotFound from "../components/notFound";
 import { ProtectedRoute } from "../components/protectedRoute";
 import FeedbacksScreen from "../pages/Feedbacks/feedbacksScreen";
@@ -7,28 +8,30 @@ import Login from "../pages/Login/loginScreen";
 
 export default function RouterLayout() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <HomeScreen />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/feedbacks"
-          element={
-            <ProtectedRoute>
-              <FeedbacksScreen />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/" element={<Navigate to={"/admin"} />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <HomeScreen />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/feedbacks"
+            element={
+              <ProtectedRoute>
+                <FeedbacksScreen />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/" element={<Navigate to={"/admin"} />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
