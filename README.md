@@ -1,9 +1,62 @@
-# Leve Saúde - Guia de Execução
+# Leve Saúde - Guia de Execução e Demo
 
 Este projeto contém duas aplicações:
 
 - **Mobile**: React Native (Expo + EAS Build)
 - **Web**: React + Vite
+
+## Sobre o Projeto
+
+### Aplicativo Mobile
+O aplicativo mobile foi desenvolvido para proporcionar uma experiência intuitiva aos usuários finais. Principais funcionalidades:
+- **Cadastro e Login**: Sistema de autenticação seguro com Firebase
+- **Sincronização em Tempo Real**: Dados sincronizados automaticamente com o firebase
+- **Navegação Fluida**: Experiência de usuário otimizada para dispositivos móveis
+
+### Sistema Web (Painel Administrativo)
+O sistema web serve como painel administrativo para gerenciamento completo da plataforma:
+- **Dashboard Administrativo**: Visão geral das avaliações de todos os usuários.
+- **Interface Responsiva**: Adaptável a diferentes tamanhos de tela
+
+## Vídeo Demonstrativo
+
+#### Demonstração do Aplicativo Mobile
+
+https://github.com/user-attachments/assets/f50b8d38-17c6-448f-ab88-e8d230e8b9b9
+
+
+
+O vídeo demonstra as principais funcionalidades do aplicativo, incluindo:
+- Processo de login e cadastro
+- Navegação entre telas
+- Principais recursos e funcionalidades
+- Interface do usuário em ação
+
+## Tecnologias Utilizadas
+
+### Mobile (React Native)
+- **React Native**: Framework para desenvolvimento mobile multiplataforma
+- **Expo**: Plataforma para desenvolvimento e build de apps React Native
+- **EAS Build**: Serviço de modo desenvolvimento ebuild na nuvem da Expo
+- **Firebase**: Backend-as-a-Service para autenticação e banco de dados
+- **TypeScript**: Linguagem com tipagem estática
+
+### Web (React)
+- **React**: Biblioteca JavaScript para construção de interfaces
+- **Vite**: Bundler moderno e rápido para desenvolvimento web
+- **TypeScript**: Linguagem com tipagem estática
+- **Firebase**: Serviços de backend e autenticação
+- **Styled Components**: Para estilização dos componentes
+- **React Router**: Roteamento para aplicações React
+
+### Infraestrutura e Deploy
+- **Vercel**: Plataforma de deploy para aplicações web
+- **Firebase Firestore**: Banco de dados NoSQL em tempo real
+- **Firebase Authentication**: Sistema de autenticação
+
+---
+# Como rodar ou utilizar
+
 
 ## Pré-requisitos
 
@@ -12,8 +65,6 @@ Este projeto contém duas aplicações:
 - Expo CLI (`npm install -g expo-cli`)
 - Android Studio (para emulador Android) ou dispositivo físico
 - Arquivo .env enviado por email
-
----
 
 ## Build do App Mobile com EAS Build
 
